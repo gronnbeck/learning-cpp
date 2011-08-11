@@ -17,6 +17,7 @@
 // Functionality
 #include "ex06.h"
 #include "fileiotask.h"
+#include "ex08.h"
 
 // Others
 #include <iostream>
@@ -26,7 +27,8 @@ using namespace std;
 int main (int argc, const char * argv[])
 
 {
-    int ex = 7;
+    int ex = 8;
+    
     if (ex == 5) 
     {
         ex05::testRationalGetNominatorAndDenominator();
@@ -47,6 +49,11 @@ int main (int argc, const char * argv[])
         ex07::fileInFileOut();
         ex07::fileCharStat();
         ex07::fileWordStat();
+    }
+    else if (ex == 8)
+    {
+        ex08::testCircle();
+        ex08::testRectangle();
     }
 }
 
