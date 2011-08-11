@@ -31,6 +31,9 @@ namespace ex07 {
         while (!input.eof()) 
         {
             string inputWord;
+            
+            // with this, the character \n is not qualified as a 
+            // delimiter between two words. Gonna get to this later
             getline(input, inputWord, ' ');
             inputWord = filterWord(inputWord);
             
