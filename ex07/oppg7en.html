@@ -1,0 +1,206 @@
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"/>
+
+		<title>TDT4102: Exercise 7</title>
+		
+		<style type="text/css">
+		{font-size: 1.0em;}
+		.code {	font-size: 1.0em;
+			font-family: "Courier New";}
+		dl {margin-top: 0.9em;}
+		dt {margin-top: 0.9em;}
+		h2 {margin-top: 1.5em;}
+		h3 {margin-top: 1.5em;}
+		p {margin-top: 1.1em;}
+		dl {margin-left: 2em;}
+		</style>
+
+	</head>
+	<body>
+
+		<h1>TDT4102, Spring 2011</h1>
+
+		<h2>Exercise 7</h2>
+		<h3>Deadline: 18.03.2011</h3>
+		<hr/>
+		<h3>The objective of this exercise:</h3>
+		<ul>
+			<li>streams</li>
+			<li>reading from files</li>
+			<li>writing to files</li>
+		</ul>
+
+		<h3>General requirements:</h3>
+		<ul>
+			<li>use exact name and specification when given in the exercise</li>
+			<li>it is optional to use an IDE (Visual Studio, Code::Blocks), but it is required that your code is easy to read, compile and run</li>
+			<li>write the necessary code to show that your program is working as intended</li>
+		</ul>
+
+		<h3>Recommended reading:</h3>
+		<ul>
+			<li>Chapter 12, <i>Absolute C++</i> (Walter Savitch)</li>
+			<li>It's Learning notes</li>
+		</ul>
+
+		<hr/>
+
+		<h2>Part 1: File output and input (20 pt.)</h2>
+		
+		<b>a)</b> Write a program that reads words from the user input (cin),
+		and stores each word as a separate line in a text file. 
+		<br/><br/>
+		Hint: Store the input from the extraction operator in a string
+		and use a specific word to terminate the input process such as "quit".<br/>
+		Use the compare function of the string class to test if the termination word is found
+		(this function will return 0 if the strings are equal).
+		<br/><br/>
+		
+		<b>b)</b> Write a program that reads from a text file,
+		and creates a new file (with another name) with the same text but with line numbers.
+		Implement the code that is needed to test for common errors such as file not found.
+		<br/><br/>
+		Hint: To read an entire line at the time, use the <i>getline()</i> function.<br/>
+		To test if you have reached the end of the file, you may use what the textbook
+		on page 524 refers to as the "macho way."
+		<br/><br/>
+		
+		Note: File paths are a source of confusion when reading and writing to files.
+		The programs you create will typically store files in the working directory of the project
+		if you use only the file name (not including the full path).<br/>
+		The best way to find out where the file ends up is to simply create a file
+		and look for the file in the project directory.
+		<br/><br/>
+		Text files that you use in your Visual Studio project can be added to the project (or created)
+		as items in the projects "Resource folder". Files are added in a similar way in Code::Blocks.
+		If you're not using an IDE, you can manually create a text file in the same folder as the executable program
+		(the folder in which you run the program) so that you don't have to worry about file paths.
+
+
+		<h2>Part 2: File Input: character statistics (20 pt.)</h2>
+		
+		In this exercise you will read from a text file and create statistics about characters.
+		To get started you will need a text file containing a reasonable amount of ordinary text (at least a few lines).
+		Use any text file you like, or create a new text file with the program you wrote in part 1.
+		<br/><br/>
+		
+		Write a program that reads a text file and displays character statistics (using cout); 
+		the number of characters in the file and the occurrence of each character (how many times a character is used in the text).
+		You can limit the number of different characters you count to normal letters (a-z)
+		and you can further simplify by converting uppercase to lowercase using tolower(char).
+		<br/><br/>
+		
+		Hint: This can be achieved by using an array with the length equal the number of different characters.
+		For instance, if you encounter the character 'e', you should increment the element of the array in position 'e' - 'a' 
+		(<span class="code">characterCount['e'-'a']</span>). Make sure to stay within the range of array.
+		
+		<pre>
+<!---       ---><b>Example output:</b>
+<!---       --->
+<!---       --->Character statistics:
+<!---       --->Total number of characters: 555
+<!---       --->a: 38   b: 1    c: 45   d: 13
+<!---       --->e: 46   f: 26   g: 4    h: 15
+<!---       --->i: 64   j: 0    k: 0    l: 33
+<!---       --->m: 14   n: 48   o: 40   p: 8
+<!---       --->q: 0    r: 36   s: 29   t: 60
+<!---       --->u: 24   v: 3    w: 3    x: 1
+<!---       --->y: 0    z: 4</pre>
+		
+		<h2>Part 3: File Input: word statistics (30 pt.)</h2>
+		Write a program that creates statistics about the words in a text file. You should at least count the words in the file,
+		how many times each word is used and find the longest word. Display the statistics by sending it to cout.
+		
+		<pre>
+<!---       ---><b>Example output:</b>
+<!---       --->
+<!---       --->Text statistics:
+<!---       --->Longest word: alphabet
+<!---       --->Number of words: 49
+<!---       --->Number of lines: 5
+<!---       --->Average word length: 7
+<!---       --->this: 1
+<!---       --->is: 1
+<!---       --->a: 1
+<!---       --->very: 1
+<!---       --->exercise: 1
+<!---       --->....
+<!---       --->....</pre>
+
+		Hints: Words can be extracted by using the extraction operator in combination with a string.
+		It is probably a good idea to create a class or struct with member variables for word and occurrence.<br/>
+		You should remove all punctuation and non-normal letters from the words, as well as converting them to lower case.
+		For instance: Convert "Don't" to "dont" before you store it in the vector.
+		Remember to check if there are still letters left in the word before adding it to the vector.
+		
+		<h2>Part 4: Hangman (30 pt.)</h2>
+		
+		Hangman is a game usually played with paper and pencil.
+		One player thinks of a word and the other tries to guess it by suggesting letters.
+		The word to guess is represented by a row of dashes, giving the number of letters.
+		If the suggested letter doesn't occur in the word, the other player draws one element of the hang man diagram.
+		The game is over when either the diagram is completed, or the word is guessed.
+		The diagram is designed to look like a hanged man, but in this exercise it can be represented by
+		a decreasing integer value for each wrong letter guessed.
+		<br/><br/>
+		
+		Start by writing a program which reads words from a text file (hangman.txt) and puts each word in a vector
+		(that is, you should put all of the words into the same vector). The text file should contain one word on each line.
+		<br/><br/>
+		
+		Example of hangman.txt content:
+		<pre>
+<!---       --->swordfish
+<!---       --->programming
+<!---       --->blue
+<!---       --->freebird</pre>
+		
+		Modify the program so that the user is asked to guess a letter in a randomly chosen word from the vector.
+		Give the user some hint on how many letters the word has, and which letters he has left to guess.
+		This should continue to loop until the game is over.
+		To make the game easier to code, you can limit the characters in the game to lowercase only.
+		<br/><br/>
+
+		When the user has guessed all the correct letters, the program should congratulate the user.
+		If the player used more than a given number (choose a reasonable number) of tries, the game will be over and the player lost.<br/>
+		How you choose to implement the game rules are up to you, but a playable hangman game is required.
+		<br/><br/>
+
+		Hint: Use the string member function <i>find(char c)</i> to check if the string contains the character:
+		<pre>
+<!---       --->if (myString.find(currentLetter) != string::npos){
+<!---       --->	// currentLetter is in the string
+<!---       --->}</pre>
+		<i>string::npos</i> represents an index that can not exist in any string. Numerically speaking,
+		it is the largest possible value of an unsigned integer, or simply -1.
+		<i>find(char c)</i> will return this value if the string does not contain <i>c</i>.
+		<br/><br/>
+		
+		Optional: Don't let the user guess the same letter twice and display which letters he has already guessed.<br/>
+		Optional: Print a list after each input with all the letters which the player has guessed, but wasn't in the word.<br/>
+		Optional: Modify the program so that the player can submit his own words to the list (use code from part 1).
+		Also, let the player choose the length of the word which the program is going to pick.
+		
+		<pre>
+<!---       ---><b>Example of output:</b>
+<!---       --->
+<!---       --->Welcome to Hangman!
+<!---       --->A random word has been chosen, try to guess it!
+<!---       --->Current word: _______
+<!---       --->Tries: 5
+<!---       --->> e
+<!---       --->Current word: __ee____
+<!---       --->Tries: 5
+<!---       --->> i
+<!---       --->Current word: __ee_i__
+<!---       --->> x
+<!---       --->Current word: __ee_i__
+<!---       --->Tries: 4
+<!---       --->(... etc ...)
+<!---       --->>b
+<!---       --->Current word: freebird
+<!---       --->YOU WIN!</pre>
+
+	</body>
+</html>

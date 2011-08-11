@@ -1,0 +1,258 @@
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"/>
+
+		<title>TDT4102: Exercise 8</title>
+		
+		<style type="text/css">
+		{font-size: 1.0em;}
+		.code {	font-size: 1.0em;
+			font-family: "Courier New";}
+		dl {margin-top: 0.9em;}
+		dt {margin-top: 0.9em;}
+		h2 {margin-top: 1.5em;}
+		h3 {margin-top: 1.5em;}
+		p {margin-top: 1.1em;}
+		dl {margin-left: 2em;}
+		</style>
+
+	</head>
+	<body>
+
+		<h1>TDT4102, Spring 2011</h1>
+
+		<h2>Exercise 8</h2>
+		<h3>Deadline: 01.04.2011</h3>
+		<hr/>
+		<h3>The objective of this exercise:</h3>
+		<ul>
+			<li>Try out some simple recursion.</li>
+			<li>Inheritance</li>
+			<li>Virtual Functions</li>
+			<li>Polymorphism</li>
+
+		</ul>
+
+		<h3>General requirements:</h3>
+		<ul>
+			<li>use exact name and specification when given in the exercise</li>
+			<li>it is optional to use an IDE (Visual Studio, Code::Blocks), but it is required that your code is easy to read, compile and run</li>
+			<li>write the necessary code to show that your implementations your working as intended</li>
+		</ul>
+
+		<h3>Recommended reading:</h3>
+		<ul>
+			<li>Chapter 13, 14 &amp; 15, <i>Absolute C++</i> (Walter Savitch)</li>
+			<li>It's Learning notes</li>
+		</ul>
+
+		<hr/>
+
+		<h2>Part 1: Recursion (20 pt.)</h2>
+		
+		<b>a)</b> Create the <i>recursive</i> function <i>factorial()</i>,
+		that takes an integer as input and returns the product of that integer and all lower, positive integers.<br/>
+		<span class="code">( 5! = 5 * 4 * 3 * 2 * 1 )</span><br/>
+		Hint: The factorial of the number <span class="code">n</span> is the factorial of <span class="code">n-1</span>
+		multiplied by <span class="code">n</span>
+		<br/><br/>
+		
+		<b>b)</b> Create the <i>recursive</i> function <i>fibonacci()</i> that takes an integer <i>n</i> as an argument and
+		returns the <i>n</i>th Fibonacci number.<br/>
+		A Fibonacci number <i>f</i> is defined as the sum of the two previous Fibonacci numbers, that is, <i>f(n)=f(n-1)+f(n-2)</i>.<br/>
+		<i>f(0)</i> is defined as 0 and <i>f(1)</i> is defined as 1.<br/>
+		The first few Fibonacci numbers are hence: 1 1 2 3 5 8 13 21 34 ...
+		
+		<h2>Inheritance - Introduction</h2>
+		
+		An implementation of the class <i>Shape</i> can be found in the	file <b>shape.zip</b>.
+		Download the file and import it into your project. In Visual C++, this can be
+		achieved by unzipping the file into the project directory. Right click on the "Source File" folder
+		and select "Add > Existing item."
+		<br/><br/>
+		
+		Shape is a simple generic class for any kind of geometric two-dimensional shape
+		and it supports information about the color of a shape object and the type
+		of line a shape object has. Both member variables are strings; the color can be a value
+		such as "blue", "yellow", "green", and the line can be a value such as "solid" or "dotted".
+		Please note that the values used for color and line are not very significant.
+		<br/><br/>
+		<pre class="code">
+<!---       --->class Shape{
+<!---       --->	private:
+<!---       --->		string color;
+<!---       --->		string line;
+<!---       --->	public:
+<!---       --->		Shape(string color, string line);
+<!---       --->		void setColor(string color);
+<!---       --->		void setLine(string line);
+<!---       --->		string getColor();
+<!---       --->		string getLine();
+<!---       --->		string toString();
+<!---       --->};</pre>
+		
+		<b>NB! The implementations in this assignment are rather trivial,
+		but the main challenge is to understand	how inheritance, virtual functions and polymorphism work.</b>	
+		
+		
+		<h2>Part 2: Simple inheritance, Circle (15 pt.)</h2>
+		
+		Create the class <i>Circle</i> that inherits the class <i>Shape</i>.
+		The Circle class is a subtype that extends the Shape class with member
+		variable for radius and member functions that calculate and return
+		area and circumference.<br/>
+		The Circle class should include the following member variables and functions:
+		<ul>
+			<li><i>radius</i>, a private member variable of type <i>double</i></li>
+			<li><i>Circle::Circle(string color, string line, double radius)</i>,
+			a constructor that initializes the object's variables with the given arguments</li>
+			<li><i>void Circle::setRadius(double radius)</i>, sets the radius of the circle,
+			if a negative argument is given, the radius should be set to 0.0</li>
+			<li><i>double Circle::getRadius()</i>, returns the radius of the circle</li>
+			<li><i>double Circle::getCircumference()</i>, returns the circumference of the circle</li>
+			<li><i>double Circle::getArea()</i>, returns the area of the circle</li>			
+		</ul>
+		
+		<b>NB! The constructor for the Circle class should use the constructor of the
+		Shape superclass to initialize the color and line member variables.</b>
+		<br/><br/>
+		
+		Hint: PI has been defined in the shape header file; hence you may use it in your calculations.<br/>
+		Example: <span class="code">double a = PI * r * r</span>
+		
+		
+		<h2>Part 3: Simple inheritance, Rectangle (15 pt.)</h2>
+		
+		Create the class <i>Rectangle</i> that inherits the class <i>Shape</i>.
+		The Rectangle class is a subtype that extends the Shape class with member
+		variables for width and height and member functions that calculate and return
+		area and circumference.<br/>
+		The Rectangle class should include the following member variables and functions:
+		<ul>
+			<li><i>width</i>, a private member variable of type <i>double</i></li>
+			<li><i>height</i>, a private member variable of type <i>double</i></li>
+			<li><i>Rectangle::Rectangle(string color, string line, double width, double height)</i>,
+			a constructor that initializes the object's variables with the given arguments</li>
+			<li><i>void Rectangle::setWidth(double width)</i>, sets the width of the rectangle,
+			if a negative argument is given, the width should be set to 0.0</li>
+			<li><i>void Rectangle::setHeight(double height)</i>, sets the height of the rectangle,
+			if a negative argument is given, the height should be set to 0.0</li>
+			<li><i>double Rectangle::getWidth()</i>, returns the width of the rectangle</li>
+			<li><i>double Rectangle::getHeight()</i>, returns the height of the rectangle</li>
+			<li><i>double Rectangle::getCircumference()</i>, returns the circumference of the rectangle</li>
+			<li><i>double Rectangle::getArea()</i>, returns the area of the rectangle</li>			
+		</ul>
+		
+		<b>NB! The constructor for the Rectangle class should use the constructor of the
+		Shape superclass to initialize the color and line member variables.</b>
+		
+		
+		<h2>Part 4: Three-level inheritance, Square (15 pt.)</h2>
+		
+		Create the class <i>Square</i> which inherits the class <i>Rectangle</i>.
+		Extend the class with the following member function:
+		<ul>
+			<li><i>Square::Square(string color, string line, double sideLength),</i>
+			a constructor that initializes the object's variables with the given arguments</li>
+		</ul>
+		
+		<b>NB! The constructor for the Square class should use the constructor of the
+		<i>Rectangle</i> superclass to initialize the color, line and side (height and width) member variables.</b>
+		<br/><br/>
+		
+		Hint: A square is a rectangle where both the height and width are equal to sideLength.
+		
+		
+		<h2>Part 5: Redefining the toString() function (15 pt.)</h2>
+		
+		Redefine the toString() function for all the subclasses that inherits Shape.
+
+		<ul>
+			<li>The toString() function in the Rectangle class should return a string that includes
+			color, line type, height, width, area and circumference,
+			e.g.: "Color = blue, Line = dotted, Height = 8, Width = 5, Area = 40, Circumference = 26"</li>
+			<li>The toString() function in the Circle class should return a string that includes
+			color, line type, radius, area and circumference,
+			e.g.: "Color = blue, Line = dotted, Radius = 5, Area = 78.5, Circumference = 31.4"</li>
+			<li>Do you need to redefine the toString() function for the Square class?</li>
+		</ul>
+		
+		<b>NB! You should implement the toString() functions in such a way that the redefined functions
+		make use of the toString() function of the parent class!
+		The toString() function in the Rectangle class should return a string value that is constructed
+		from the value that is returned by the toString() function of the Shape class
+		and additional information that is specific for the Rectangle class.</b>
+		<br/><br/>
+		
+		Hint: The class stringstream can be used to concatenate values of different types into a string.
+		This class is defined in &lt;sstream&gt; and you typically use the insertion operator &lt;&lt;
+		to add data to a stringstream. The function str() returns the content of a stringstream as a string.
+		<br/><br/>
+		<span class="code">
+		#include &lt;sstream&gt;<br/>
+		...
+		<br/><br/>
+		stringstream ss;<br/>
+		ss &lt;&lt; "text";<br/>
+		ss &lt;&lt; 5;<br/>
+		string s = ss.str();
+		</span>
+		
+		
+		<h2>Part 6: Virtual functions and abstract classes (20 pt.)</h2>
+		
+		The <i>toString()</i> function in the Shape class can be declared as virtual.
+		Copy and paste the following code into your program.
+		
+		<pre class="code">
+<!---       --->	Shape s1("red", "dotted");
+<!---       --->	cout &lt;&lt; "s1: " &lt;&lt; s1.toString() &lt;&lt; endl;
+<!---       --->	Rectangle r1("blue", "solid", 6, 6);
+<!---       --->	cout &lt;&lt; "r1: " &lt;&lt; r1.toString() &lt;&lt; endl;
+<!---       --->	Shape s2 = r1;
+<!---       --->	cout &lt;&lt; "s2: " &lt;&lt; s2.toString() &lt;&lt; endl;
+<!---       --->	Shape *ps1 = new Shape("green", "dotted");
+<!---       --->	cout &lt;&lt; "ps1: " &lt;&lt; ps1->toString() &lt;&lt; endl;
+<!---       --->	Rectangle *pr1 = new Rectangle("yellow", "solid", 5, 5);
+<!---       --->	cout &lt;&lt; "pr1: " &lt;&lt; pr1->toString() &lt;&lt; endl;
+<!---       --->	Shape *ps2 = pr1;
+<!---       --->	cout &lt;&lt; "ps2: " &lt;&lt; ps2->toString() &lt;&lt; endl;</pre>		
+		
+		Compile and run the program <b>without</b> declaring the toString() function as virtual first.<br/>
+		Then, compile and run the program <b>with</b> the toString() function declared as virtual.<br/>
+		What is the difference? Make sure you understand why the output is different.
+		<br/><br/>
+		<b>b)</b> The Shape class can be made into an abstract class.
+		Instances you make in your program should be of a specific subtype as there are no shape objects without any specific form.
+		Create the following function:
+		<ul>
+			<li><i>virtual string getName() = 0;</i> as a <b>pure virtual function</b> for the Shape class</li>
+			<li>For the derived classes, this function should return a string with the name of the shape class
+			(i.e. "Rectangle", "Circle", "Square")</li>
+		</ul>
+		Change the implementation of toString() in the Shape class and include
+		the string from getName() in the final string that is returned.
+		The toString() function in the Shape class should now be responsible
+		for returning a string on this form: "Shape =  Rectangle, Color  = blue,  Line = solid"
+		<br/><br/>
+		Note: Some of your previous code in main, for instance the one you pasted in part 6a, may produce errors when Shape is made abstract.
+		Comment out the lines where the problems are when doing part 6b and c.
+		<br/><br/>
+		
+		<b>c)</b> Create a vector that can contain pointers to Shape-objects
+		<br/><br/>
+		<span class="code">vector&lt;Shape *&gt; shapes;</span>
+		<br/><br/>
+		
+		Create some rectangles, squares, circles etc. and add them to the vector 
+		(remember that the vector stores pointers to shapes).
+		Write a simple loop that calls the toString() function on all the shapes in the vector
+		and prints out the returned string.
+		Use the debugger to inspect the sequence of function calls that actually happen for each call to toString().
+		<br/><br/>
+		
+		<b>d)</b> <i>(optional)</i> Include the area and circumference in the string that is returned
+		from the toString() function of <i>Shape</i>.
+		Use pure virtual getArea() and getCircumference() functions for this purpose.
+	</body>
+</html>

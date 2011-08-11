@@ -1,0 +1,363 @@
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"/>
+
+		<title>TDT4102: Exercise 6</title>
+		
+		<style type="text/css">
+		{font-size: 1.0em;}
+		.code {	font-size: 1.0em;
+			font-family: "Courier New";}
+		dl {margin-top: 0.9em;}
+		dt {margin-top: 0.9em;}
+		h2 {margin-top: 1.5em;}
+		h3 {margin-top: 1.5em;}
+		p {margin-top: 1.1em;}
+		dl {margin-left: 2em;}
+		</style>
+
+	</head>
+	<body>
+
+		<h1>TDT4102, Spring 2011</h1>
+
+		<h2>Exercise 6</h2>
+		<h3>Deadline: 11.03.2011</h3>
+		<hr/>
+		<h3>The objective of this exercise:</h3>
+		<ul>
+			<li>pointers</li>
+			<li>C-strings</li>
+			<li>dynamic arrays</li>
+			<li>dynamic memory usage</li>
+			<li>vectors</li>
+		</ul>
+
+		<h3>General requirements:</h3>
+		<ul>
+			<li>use exact name and specification when given in the exercise</li>
+			<li>it is optional to use an IDE (Visual Studio, Code::Blocks), but it is required that your code is easy to read, compile and run</li>
+		</ul>
+
+		<h3>Recommended reading:</h3>
+		<ul>
+			<li>Chapter 7.3, 9 &amp; 10, <i>Absolute C++</i> (Walter Savitch)</li>
+			<li>It's Learning notes</li>
+		</ul>
+		<hr/>
+		<br/>
+		Note: This exercise somewhat larger than the previous ones, make sure you calculate enough time for it.
+
+		<h2>Part 1: Pointers (10 pt.)</h2>
+		<b>a)</b> Implement a function for swapping two values using pointers as parameter:
+		<br/><br/>
+		<span class="code">void mySwap(int *x, int *y);</span>
+		<br/><br/>
+		The function should swap the values pointed to by the parameters.
+		<br/><br/>
+		
+		<b>b)</b> Use the function to swap the two integer values
+		<span class="code">a</span> and <span class="code">b</span> in the following code:
+		<br/><br/>
+		<span class="code">
+			int a = 1;<br/>
+			int b = 2;<br/>
+			<br/><br/>
+			mySwap(.....); //Fill in the arguments here (Only alter this line in the code)
+			<br/><br/>
+			cout &lt;&lt; "a = " &lt;&lt; a &lt;&lt; endl; //a should now be 2<br/>
+			cout &lt;&lt; "b = " &lt;&lt; b &lt;&lt; endl; //b should now be 1		
+		</span>
+		<br/><br/>
+		
+		<b>c)</b> Use the function to swap the two integer values pointed to by
+		<span class="code">c</span> and <span class="code">d</span> in the following code:
+		<br/><br/>
+		<span class="code">
+			int *c = new int(3);<br/>
+			int *d = new int(4);<br/>
+			<br/><br/>
+			mySwap(.....); //Fill in the arguments here (Only alter this line in the code)
+			<br/><br/>
+			cout &lt;&lt; "*c = " &lt;&lt; *c &lt;&lt; endl; //*c should now be 4<br/>
+			cout &lt;&lt; "*d = " &lt;&lt; *d &lt;&lt; endl; //*d should now be 3		
+		</span>
+		
+		
+		<h2>Part 2: C-strings (15 pt.)</h2>
+		<b>a)</b> Create a C-string variable in your <i>main()</i> function.
+		<br/><br/>
+		
+		In the rest of this part, decide yourself if you want to implement the following function using arrays or pointers.
+		<br/><br/>
+		
+		<b>b)</b> Write a function which prompts the user for a line of text and stores the input in a C-string variable given as argument.<br/>
+		<span class="code">void getInput(char*);</span> (or&nbsp;&nbsp;<span class="code">void getInput(char[]);</span>)
+		<br/><br/>
+		
+		<b>c)</b> Write a function that counts the number of characters in a C-string
+		and returns the number of characters in the string. (Do not include the '\0' in your count)<br/>
+		NB! You are not allowed to use the strlen library function in this assignment.<br/>
+		<span class="code">int countCharacters(char*);</span>
+		<br/><br/>
+		
+		<b>d)</b> Write a function to reverse the characters in a C-string.<br/>
+		<span class="code">void reverseString(char*);</span>
+		<br/><br/>
+		Example: The function should change the string "abcdef" to "fedcba".
+		<br/><br/>
+		
+		<b>e)</b> Imagine you are developing a software package the requires the users
+		to enter their own passwords.
+		<br/><br/>
+		Write a function verifies that a password given as a C-string argument meets the stated criteria.
+		If it does not, the function should display a message telling the user why.<br/>
+		<span class="code">void checkPassword(char*);</span>
+		<br/><br/>
+		The password has to meet the following criteria:
+		<ul>
+			<li>The password should be at least six characters long.</li>
+			<li>The password should contain at least one uppercase, and at least one lowercase letter.</li>
+			<li>The password should contain at least one digit</li>
+		</ul>
+		
+		
+		<h2>Part 3: Dynamic Arrays (15 pt.)</h2>
+
+		<b>a)</b> Copy the given code into your project and implement the functions
+		<i>createNewTable</i> and <i>printTable</i> that are used in the <i>main()</i> function.
+		<br/><br/>
+		
+		The program is a simple example of the use of dynamic arrays. The program starts with an empty array
+		and the user is asked to input 5 integers at a time, until the program is terminated by 'n'.
+		For every iteration, a new array is created that includes all the previous integers of the array
+		in addition to the new input. The <i>printTable</i> function is used to print
+		the size and contents of the array to the screen.
+		<pre>
+<!---       --->int main(){
+<!---       --->	int incr_size = 5;
+<!---       --->	int size = 0;
+<!---       --->	int *table = new int[size];
+<!---       --->	int *input = new int[incr_size];
+<!---       --->	char c = 'y';
+<!---       --->	while (toupper(c) == 'Y'){
+<!---       --->		cout &lt;&lt; "Write a sequence of " &lt;&lt; incr_size &lt;&lt; " integer values: ";
+<!---       --->		for (int i = 0; i &lt; incr_size; i++){
+<!---       --->			cin &gt;&gt; input[i];
+<!---       --->		}
+<!---       --->		table = createNewTable(table, input, size, incr_size);
+<!---       --->		size += incr_size;
+<!---       --->		printTable(table, size);
+<!---       --->		cout &lt;&lt; "Continue (y/n): ";
+<!---       --->		cin >> c;
+<!---       --->	}
+<!---       --->	return 0;
+<!---       --->}
+		</pre>
+		The output should look something like:
+		<pre>
+<!---       --->Write a sequence of 5 integer values: 1 2 3 4 5
+<!---       --->Table now contains 5 elements:   1 2 3 4 5
+<!---       --->Continue (y/n): y
+<!---       --->Write a sequence of 5 integer values: 1 2 3 4 6
+<!---       --->Table now contains 10 elements:   1 2 3 4 5 1 2 3 4 6
+<!---       --->Continue (y/n): y
+<!---       --->Write a sequence of 5 integer values: 0 0 33 55 99
+<!---       --->Table now contains 15 elements:   1 2 3 4 5 1 2 3 4 6 0 0 33 55 99
+<!---       --->Continue (y/n): n
+		</pre>
+		
+		<b>b)</b> The code above does not deallocate the memory that is not used anymore
+		(the line that assigns new array to the table variable is the main problem).
+		Implement the appropriate memory management that is needed in the <i>main</i> method
+		(you have to add a few lines including a delete [] statement).
+		
+		<h2>Part 4: Minesweeper (30 pt.)</h2>
+		
+		In this part you will create the game Minesweeper. In Minesweeper, the player is
+		presented with a rectangular playing board, consisting of a grid of squares.
+		Under a number of random squares there are placed mines and the player is to open
+		all squares that do not contain a mine to win the game. If the player opens a square
+		with a mine, he has lost. Every square not containing a mine holds a number, ranging
+		from zero to eight, representing how many mines there is in the neighboring squares.
+		Since we want the player to select the difficulty of the game, the arrays representing
+		the board should be dynamic, so the player can select the size of the board.
+		<br/><br/>
+		
+		<b>a)</b> Create the class <i>Minesweeper</i> that holds the following <i>private</i> member variables:<br/>
+		<i>height,</i> an integer representing the height (number of rows) of the playing board.<br/>
+		<i>width,</i> an integer representing the width (number of columns) of the playing board.<br/>
+		<i>mines,</i> an integer representing the number of mines on the playing board.<br/>
+		<i>open,</i> an integer representing the number of squares the player has opened.<br/>
+		<i>board,</i> a 2 dimensional dynamic array of integer representing the playing board.<br/>
+		<i>mask,</i> a 2 dimensional dynamic array of integer representing what squares the user has opened.
+		<br/><br/>
+		
+		You shall now create a number of functions needed for the game. Decide for each function if it should
+		be <i>private</i> or <i>public.</i>
+		<br/><br/>
+		
+		<b>b)</b> Create the function <i>getInput</i> that should take no arguments and return nothing.<br/>
+		This function asks the player to input the size of the board and number of mines and stores this in
+		the <i>height, width,</i> and <i>mines</i> variables. This function should verify that the supplied
+		values are valid, and query the user for new values if they are not. For the input to be valid,
+		the height and width needs to be at least 2 and the number of mines at least 1, but not greater
+		than half the number of squares (height x width) on the board.
+		<br/><br/>
+		
+		<b>c)</b> Create the function <i>makeBoard</i> that should take no arguments and return nothing.<br/>
+		This function should create the 2 dimensional dynamic arrays <i>board</i> and <i>mask</i> and fill them
+		both with zeros. The size of the arrays is given by <i>height</i> and <i>width.</i>
+		<br/><br/>
+		
+		<b>d)</b> Create the function <i>placeMines</i> that should take no arguments and return nothing.<br/>
+		This function should place a number of mines, given by the member variable <i>mines</i>, in the array <i>board</i>. A mine can
+		be represented by the value -1. This function should also increment every neighbor field <b>that is not a mine</b>
+		with one. Be carefull that you do not try to increment a field outside of the array when you do this.
+		<br/><br/>
+		
+		<b>e)</b> Create the function <i>setFlag</i> that takes two integers as arguments and returns nothing.<br/>
+		This function allows the player to place a flag on a square, represented be the two integers, that he believes to hold a mine.
+		A flag can be represented by setting the corresponding field in the <i>mask</i> array to 2.
+		If the square already holds a flag, the functions should remove it (set the field in <i>mask</i> to 0).
+		If the square has been opened (the <i>mask</i> field is 1), or if the given integers represent an index
+		out of the array bound, this function should do nothing.
+		<br/><br/>
+		
+		<b>f)</b> Create the function <i>openSquare</i> that takes two integers as argument and returns a boolean.<br/>
+		This function should open a square, represented by the two integers, on the board, that is, set the corresponding
+		field in <i>mask</i> to 1. The square should only be open if the given integers are not out of bound and
+		the square has not been opened and not placed a flag on. If the square holds a mine, this function should return <b>true,</b>
+		indicating that the player has lost. In all other cases, it should return <b>false.</b>
+		If the square was opened, and did not hold a mine, the member variable <i>open</i> should be incremented.
+		<br/><br/>
+		
+		<b>g)</b> Create the function <i>printBoard</i> that should take a boolean as argument and return nothing.<br/>
+		This function should print the playing board to the screen in a proper formatted manner. Find a way to represent:
+		<ul>
+			<li>unopened squares</li>
+			<li>opened squares, these should be printed as the number indication neighboring mines.
+			If the number is zero, you may choose to write it as empty space to make to board look cleaner.</li>
+			<li>flagged squares</li>
+			<li>mines, these should only be printed if the boolean argument is <b>true</b></li>
+		</ul>
+		
+		<b>h)</b> Create the function <i>cleanUpMemory</i> that should take no arguments and return nothing.<br/>
+		This function should deallocate the memory used by the dynamic arrays.
+		<br/><br/>
+		Hint: Since a 2 dimensional dynamic array can be considered as an array of arrays,
+		you must first use delete[] on all the inner arrays before you use it on the outer.
+		<br/><br/>
+		
+		<b>i)</b> Finally, create the function <i>play</i> that should take no arguments and return nothing.<br/>
+		In this function you should put you game together. Use your function together with a bit of code to
+		complete a game which let the player set the board size and number of mine and then place and remove flag
+		and open squares until he either has open all squares without mines (won) or opened a square with a mine (lost).
+		When the player has lost or won, the game should ask the player if he would play again, and, if he wants to,
+		ask for new board size and number of mines.
+		<br/><br/>
+		
+		<b>j)</b> <i>(optional)</i> NB! This part uses a technique that may not yet have been lectured about: Recursion.
+		<br/><br/>
+		If you have played Minesweeper before (as you probably have) you may have noticed that if
+		you open a square that is not a neighbor of a mine (that is, the field in the <i>board</i> array is zero),
+		every neighbor of that field is opened as well, allowing you to open large parts of the board at a time.
+		<br/><br/>
+		To implement this feature in your game, alter your function <i>openSquare</i> so that if the player opens
+		a square with value zero, every neighbor of the square is opened as well. To accomplish this in an easy way,
+		use recursion, that is, let <i>openSquare</i> call it self for every neighbor field of the opened square.		
+		
+		
+		<h2>Part 5: IntegerSet (15 pt.)</h2>
+		
+		<b>a)</b> Create a class <i>IntegerSet</i> for which objects can hold a set of integers.
+		A set can be represented internally as a vector and is a collection of unique values - 
+		any integer value should only appear once in the vector. 
+		Implement the following public member functions for your class (and any additional functions that you may need):<br/>
+		<span class="code">
+		void insertElement(int i);<br/>
+		IntegerSet* unionOfSets(IntegerSet&amp;);<br/>
+		IntegerSet* intersectionOfSets(IntegerSet&amp;);
+		</span>
+		<br/><br/> 
+
+		Hints: A union is the set-theoretical union of two sets (includes all values found in either of two sets).<br/>
+		Example: A union of 1 2 3 4 5 and 3 4 5 6 7 is 1 2 3 4 5 6 7. Note that there are no duplicates.
+		<br><br/>	
+		An intersection is the set-theoretical intersection of two sets (includes all values found in both sets).<br/>
+		Example: An intersection of 1 2 3 4 5 and 3 4 5 6 7 is 3 4 5.
+		<br/><br/>
+		
+		<b>b)</b> Write a main method (or append to an existing main) that tests your class by instantiating some sets
+		adding integers and creating new sets for unions and intersections. 
+		Create a  member function that can be used to print out the integers in the set (to cout)
+		or you can overload the &lt;&lt; operator (the main requirement is that you have to demonstrate that your class is working as intended).
+		
+		
+		<h2>Part 6: Students and courses (15 pt.)</h2>
+		
+		Implement the following two classes (copy and paste the code, implement the member functions and overloaded operators).
+		<br/><br/>
+		A course has a name and a vector holding pointers to the students taking that course.
+		A student has a name and a vector of the courses the student is taking.
+		<br/><br/>
+		The main challenge in this exercise is that the implementation should include a way
+		to simplify the process of updating the vectors. Whenever a student is added to a course,
+		the <i>addStudent()</i> function should make an implicit call to the students <i>addCourse()</i> function
+		to update the list of courses a student is taking. (Why should you not also make <i>addCourse()</i>
+		call <i>addStudent()</i>?) You should be able to run the main method that is listed and get the output that is indicated below.
+		<pre>
+<!---       --->class Student;
+<!---       --->
+<!---       --->class Course{
+<!---       --->	private:
+<!---       --->		string name;
+<!---       --->		vector&lt;Student*&gt; students;
+<!---       --->	public:
+<!---       --->		Course(string name): name(name){};
+<!---       --->		string getName();
+<!---       --->		void addStudent(Student *s);
+<!---       --->		friend ostream&amp; operator &lt;&lt;(ostream&amp;, Course*);
+<!---       --->};
+<!---       --->
+<!---       --->class Student{
+<!---       --->	private:
+<!---       --->		string name;
+<!---       --->		vector&lt;Course*&gt; courses;
+<!---       --->	public:
+<!---       --->		Student(string name): name(name){};
+<!---       --->		string getName();
+<!---       --->		void addCourse(Course *c);
+<!---       --->		friend ostream&amp; operator &lt;&lt;(ostream&amp;, Student*);
+<!---       --->};
+<!---       --->
+<!---       --->int main(){
+<!---       --->	Student *s1 = new Student("Per Person");
+<!---       --->	Student *s2 = new Student("Tor Jenssen");
+<!---       --->	Student *s3 = new Student("Lene Marlin");
+<!---       --->	Course *c1 = new Course("TDT4102");
+<!---       --->	Course *c2 = new Course("TDT4100");
+<!---       --->	c1->addStudent(s1);
+<!---       --->	c1->addStudent(s2);
+<!---       --->	c1->addStudent(s3);
+<!---       --->	c2->addStudent(s1);
+<!---       --->	c2->addStudent(s2);
+<!---       --->	cout &lt;&lt; s1;
+<!---       --->	cout &lt;&lt; s2;
+<!---       --->	cout &lt;&lt; s3;
+<!---       --->	cout &lt;&lt; c1;
+<!---       --->	cout &lt;&lt; c2;
+<!---       --->
+<!---       --->	return 0;
+<!---       --->}
+<!---       --->
+<!---       --->The output should be something like this:
+<!---       --->
+<!---       --->Per Person: TDT4102, TDT4100
+<!---       --->Tor Jenssen: TDT4102, TDT4100
+<!---       --->Lene Marlin: TDT4102
+<!---       --->TDT4102: Per Person, Tor Jenssen, Lene Marlin
+<!---       --->TDT4100: Per Person, Tor Jenssen
+		</pre>
+	</body>
+</html>

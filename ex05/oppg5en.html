@@ -1,0 +1,271 @@
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"/>
+
+		<title>TDT4102: Exercise 5</title>
+		
+		<style type="text/css">
+		{font-size: 1.0em;}
+		.code {	font-size: 1.0em;
+			font-family: "Courier New";}
+		dl {margin-top: 0.9em;}
+		dt {margin-top: 0.9em;}
+		h2 {margin-top: 1.5em;}
+		h3 {margin-top: 1.5em;}
+		p {margin-top: 1.1em;}
+		dl {margin-left: 2em;}
+		</style>
+
+	</head>
+	<body>
+
+		<h1>TDT4102, Spring 2011</h1>
+
+		<h2>Exercise 5</h2>
+		<h3>Deadline: 25.02.2011</h3>
+		<hr/>
+		<h3>The objective of this exercise:</h3>
+		<ul>
+			<li>learn to overload operators</li>
+
+		</ul>
+
+		<h3>General requirements:</h3>
+		<ul>
+			<li>use exact name and specification when given in the exercise</li>
+			<li>it is optional to use an IDE (Visual Studio, Code::Blocks), but it is required that your code is easy to read, compile and run</li>
+			<li>all operators should be tested from <i>main()</i></li>
+		</ul>
+
+		<h3>Recommended reading:</h3>
+		<ul>
+			<li>Chapter 8, <i>Absolute C++</i> (Walter Savitch)</li>
+			<li>It's Learning notes</li>
+		</ul>
+
+		<hr/>
+
+
+
+		<h2>Part 1: The Rational Class (15 pt.)</h2>
+		In this part of the exercise you will create the class Rational that will be used throughout this exercise.
+		Rational numbers are all the numbers that can be written as a ratio of two integers.
+		Rational numbers can be expressed as a fraction, which is written as a / b where a is the numerator
+		and b is the denominator. Note that b should not be zero. 
+		<br/><br/>
+		
+		<b>a)</b> Create the class <i>Rational</i> that has the private member values <i>numerator</i> and <i>denominator</i>.
+		Use a <span class="code">long</span> integer for both these values.
+		<br/><br/>
+		Hint: The <i>long</i> type is simply an integer type that is always at least 4 bytes (32 bits) big.
+		<br/><br/>
+		
+		<b>b)</b> Create a constructor for the class that takes two numbers as arguments, the numerator and the denominator as long integers.
+		Also create a <i>default</i> constructor that takes no arguments, but sets <i>numerator</i> to zero and <i>denominator</i> to one.
+		<br/><br/>
+		
+		<b>c)</b> Create the public member functions getNumerator() and getDenominator() that will return the appropriate numbers as long integers.
+		<br/><br/>
+		
+		<b>d)</b> Create a public function gcd(), that returns the Greatest Common Divisor for the numerator and denominator.
+		The greatest common divisor of two numbers is the greatest whole number that divides both numbers.
+		For instance, the greatest common divisor of 42 and 63 is 21.
+		To find the greatest common divisor you can use Euclids algorithm, which is given below as pseudo code.
+		
+		<pre>
+<!---       --->function gcd()
+<!---       --->	a = abs(numerator)
+<!---       --->	b = abs(denominator)
+<!---       --->	while b != 0
+<!---       --->		t = b
+<!---       --->		b = a mod b
+<!---       --->		a = t
+<!---       --->	return a</pre>
+
+		<b>e)</b> Create a public function simplify(), that returns nothing, but divide both the numerator and
+		denominator by the Greatest Common Divider, given by the function in d).
+		This function should for instance transform a rational represented as
+		<span class="code">4/8</span> to <span class="code">1/2</span>
+		<br/><br/>
+		Modify your constructor (the one that takes arguments) to call the <i>simplify()</i>-function
+		after it has assigned values to numerator and denominator.
+		
+		<h2>Part 2: Operator overloading - Non-member operators (15 pt.)</h2>
+		Now that we have implemented some functionality for our class, it's time to overload some operators.
+		For now, <b>implement these operators as non-member</b>, that is - operators outside the class.
+		Since you will not have access to the private fields of the Rational class, you should use the get-functions.
+		<br/><br/>
+		When comparing fractions, you should remember that if <span class="code">a/b == c/d</span> then <span class="code">a*d == b*c.</span>
+		This can be used in all the tasks in part 2.
+		<br/><br/>
+		All operators in this part should take two <i>Rational</i> numbers <b>references</b> as operands (arguments),
+		and simply returning the appropriate boolean value.
+		<br/><br/>
+		
+		<b>a)</b> Overload the "==" operator for the <i>Rational</i> class.
+		<br/><br/>
+		
+		<b>b) (optional) </b> Overload the "!=" operator for the <i>Rational</i> class.
+		<br/><br/>
+		
+		<b>c)</b> Overload the "&lt;" operator for the <i>Rational</i> class.
+		<br/><br/>
+		
+		<b>d) (optional) </b> Overload the "&gt;" operator for the <i>Rational</i> class.
+		<br/><br/>
+		
+		<b>e)</b> Overload the "&lt;=" operator for the <i>Rational</i> class.
+		<br/><br/>
+		
+		<b>f) (optional) </b> Overload the "&gt;=" operator for the <i>Rational</i> class.
+		
+		<h2>Part 3: Operator overloading - Friend operators (15 pt.)</h2>
+		We will now look at overloading some more operators, this time the arithmetic operators.
+		This time we will use a slightly different approach.
+		These operations are not quite straightforward, so wipe the dust of your old math books and read up on operations on fractions.
+		The problem with implementing operators as non-members of a class is that the normal rules for private data is followed,
+		so you cannot access the private attributes of the objects.
+		To fix this problem, we can use Friend Functions. This will ensure that the operators will have access to our private fields.
+		Use this approach when you overload these operators. To ensure that you have access to the private fields,
+		use the numerator and denominator fields directly rather than using the getNumerator() and getDenominator() functions. 
+		<br/><br/>
+		All operators in this part should be friend to the <i>Rational</i> class.
+		They should take two <i>Rational</i> numbers <b>references</b> as operands (arguments),
+		and return the resulting <i>Rational</i> number.
+		<br/><br/>
+		
+		<b>a)</b> Overload the "+" operator for the <i>Rational</i> class.
+		<br/><br/>
+		
+		<b>b) (optional)</b> Overload the "-" operator for the <i>Rational</i> class.
+		<br/><br/>
+		
+		<b>c)</b> Overload the "*" operator for the <i>Rational</i> class.
+		<br/><br/>
+		
+		<b>d) (optional)</b> Overload the "/" operator for the <i>Rational</i> class.
+		
+		<h2>Part 4: Operator overloading - Member operators (15 pt.)</h2>
+		You will in this part overload the postfix (i++, i--) and the prefix (++i, --i) operators,
+		using yet another approach.
+		Now, instead of using the friend approach from the previous Part,
+		you should implement the operators as <b>members of the Rational class.</b>
+		This will ensure us access to the private fields directly.
+		<br/><br/>
+		Hint: To distingusih between the prefix (++i) and the postfix(i++) operators,
+		C++ uses a dummy int value as a parameter in the postfix version. (See textbook, page 345)
+		<br/><br/>
+		
+		<b>a)</b> Overload the <i>postfix</i> "++" operator. When this operator is used,
+		the value of the <i>Rational</i> number should be increased by one, that is,
+		the <i>numerator</i> should be increased by the <i>denominator.</i>
+		(3/2)++ should result in (5/2). This operator should also return <b>a copy of</b>
+		the <i>Rational</i> number as it was <b>before</b> it was altered.
+		<br/><br/>	
+		
+		<b>b) (optional) </b> Overload the <i>postfix</i> "--" operator. When this operator is used,
+		the value of the <i>Rational</i> number should be decreased by one, that is,
+		the <i>numerator</i> should be decreased by the <i>denominator.</i>
+		(3/2)-- should result in (1/2). This operator should also return <b>a copy of</b>
+		the <i>Rational</i> number as it was <b>before</b> it was altered.
+		<br/><br/>
+		
+		<b>c)</b> Overload the <i>prefix</i> "++" operator. When this operator is used,
+		the value of the <i>Rational</i> number should be increased by one, that is,
+		the <i>numerator</i> should be increased by the <i>denominator.</i>
+		(3/2)++ should result in (5/2). This operator should also return <b>a reference to</b>
+		the <i>Rational</i> number as it is <b>after</b> it is altered.
+		<br/><br/>
+		
+		<b>d) (optional) </b> Overload the <i>prefix</i> "--" operator. When this operator is used,
+		the value of the <i>Rational</i> number should be decreased by one, that is,
+		the <i>numerator</i> should be decreased by the <i>denominator.</i>
+		(3/2)-- should result in (1/2). This operator should also return <b>a reference to</b>
+		the <i>Rational</i> number as it is <b>after</b> it is altered.
+		<br/><br/>
+		
+		Hint: To return the object the prefix operators are used on, you may use the following line:<br/>
+		<span class="code">return *this;</span>
+		
+		<h2>Part 5: Operator overloading - Shorthand operators (20 pt.)</h2>
+		You will in this part overload some shorthand operators. As in the previous part
+		you will implement them as member operators.
+		<br/><br/>
+		All shorthand operators should alter the left hand operand (for instance a += b should add b to a,)
+		and also <b>return a reference</b> to the left hand operand.<br/>
+		Call <i>simplify()</i> on the left hand <i>Rational</i> after you alter it.
+		<br/><br/>
+		
+		<b>a)</b> Overload the "+=" operator for the <i>Rational</i> class.
+		<br/><br/>
+		
+		<b>b)</b> Overload the "-=" operator for the <i>Rational</i> class.
+		<br/><br/>
+		
+		<b>c) (optional)</b> Overload the "*=" operator for the <i>Rational</i> class.
+		<br/><br/>
+		
+		<b>d) (optional)</b> Overload the "/=" operator for the <i>Rational</i> class.
+		
+		
+		<h2>Part 6: Operator overloading - Insertion &amp; extraction operators (20 pt.)</h2>
+		Finally, you should overload the insertion (&lt;&lt;) and extraction (&gt;&gt;) operators,
+		so that you may use your <i>Rational</i> class directly with <i>cin</i> and <i>cout</i> (and other streams.)
+		Since the left hand operand of these operators are <i>streams</i>, and not the rational class,
+		you can not implement these operators as member function, however, you may yourself choose wether
+		you want to use regular non-member operators (as in part 2) or friend operators (as in part 3.)
+		<br/><br/>
+		
+		<b>a)</b> Overload the "&lt;&lt;" operator for the <i>Rational</i> class.
+		This operator should take an <i>ostream</i> reference as the left hand operand and
+		a <i>Rational</i> reference as right hand operand.
+		The operator should also return an <i>ostream</i> reference.<br/>
+		The output should be formated like <span class="code">1/3</span>
+		<br/><br/>
+		
+		<b>a)</b> Overload the "&gt;&gt;" operator for the <i>Rational</i> class.
+		This operator should take an <i>istream</i> reference as the left hand operand and
+		a <i>Rational</i> reference as right hand operand.
+		The operator should also return an <i>istream</i> reference.<br/>
+		Call <i>simplify()</i> on the <i>Rational</i> after you have read new data into it.
+		The operator should be able to read an input formated as <span class="code">1/3</span>
+		<br/><br/>
+		Hint: <span class="code">1/3</span> can be read as a long, followed by a char and an other long.
+		
+		<h2>Part 7: Operator overloading - For those who can't get enough operator overloading (optional)</h2>
+		There are many more opertors in C++, and almost all of them can be overloaded some way or an other.
+		If you would like to practice more operator overloading, the following operators may be of intrest.
+		You should implement all operators in this part as member operators.
+		<br/><br/>
+		
+		<b>a)</b> The "[]" operator. You can overload this so that myRational[0] returns numerator and myRational[1] returns denominator
+		<br/><br/>
+		
+		<b>b)</b> Unary "+" and "-" operators. (That is, operators used like this: <span class="code">b = -a</span>)
+		<br/><br/>
+		
+		<b>c)</b> The assignment operator "=". You can overload this to enable the following code:
+		<pre>
+<!---       --->int i = 42;
+<!---       --->Rational myRational;
+<!---       --->myRational = i;</pre>
+		Note: It is not possible to overload the "=" operator to work the other way around, that is
+		<pre>
+<!---       --->Rational myRational(42,1);
+<!---       --->int i = myRational; //Can not be solved by overloading "="</pre>
+		Try to overload the "=" operator for int, long and double as right hand argument.
+		(You might want to aproximate the <i>Rational</i> representation of double,
+		for instance let 4.2042042042 be representated as 42/10 = 21/5)
+		<br/><br/>
+		
+		<b>d)</b> In c) you where told that you could not overload "=" to let you assign a <i>Rational</i> to an integer.
+		However, there is an other operator you can overload to enable this: the <i>cast</i> operator.
+		The cast operator is overloaded a bit diffrently than the other operators.
+		The <i>cast</i> operator for casting to integer should be a member operator and look something like:<br/>
+		<span class="code">Rational::<b>operator</b> int(){//your code here}</span><br/>
+		Note that there is no return type given explisitly; it is given implitsitly by the cast type your overloading.<br/>
+		As in c), try to overload this operator for int, long and double.
+		
+
+	</body>
+</html>

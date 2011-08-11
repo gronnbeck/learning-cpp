@@ -9,9 +9,19 @@
 #ifndef Ovinger_C___fileiotask_h
 #define Ovinger_C___fileiotask_h
 
+#include <vector>
+
+using namespace std;
+
 namespace ex07 {
+    struct WordCount;
+    
     void cinToFile();
     void fileInFileOut();
+    void fileCharStat();
+    void fileWordStat();
+    bool containsWord(vector<WordCount*> words, string word);
+    string filterWord(string word);
 }
 
 #endif

@@ -45,6 +45,8 @@ int main (int argc, const char * argv[])
     {
         ex07::cinToFile();
         ex07::fileInFileOut();
+        ex07::fileCharStat();
+        ex07::fileWordStat();
     }
 }
 
