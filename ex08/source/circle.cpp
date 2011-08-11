@@ -10,6 +10,7 @@
 #include "circle.h"
 #include "shape.h"
 #include <cmath>
+#include <sstream>
 
 using namespace std;
 
@@ -39,6 +40,13 @@ namespace ex08 {
     double Circle::getArea()
     {
         return PI * radius * radius;
+    }
+    
+    string Circle::toString()
+    {
+        stringstream ss;
+        ss << Shape::toString() << ", Radius = " << radius << ", Circumference = " << getCircumference() << ", Area = " << getArea();
+        return ss.str();
     }
     
     

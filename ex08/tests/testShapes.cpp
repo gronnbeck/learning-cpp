@@ -25,6 +25,7 @@ namespace ex08 {
         cout << circle.getLine() << endl;
         cout << circle.getCircumference() << endl;
         cout << circle.getArea() << endl;
+        cout << circle.toString() << endl;
     }
     
     void testRectangle()

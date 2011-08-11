@@ -32,6 +32,7 @@ public:
     double  getHeight           ();
     double  getCircumference    ();
     double  getArea             ();
+    string  toString            ();
     
 };
 

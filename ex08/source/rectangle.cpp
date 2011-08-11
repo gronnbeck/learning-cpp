@@ -7,9 +7,11 @@
 //
 
 #include <iostream>
+#include <sstream>
 
 #include "shape.h"
 #include "rectangle.h"
+
 
 using namespace std;
 
@@ -43,6 +45,13 @@ namespace ex08 {
     double Rectangle::getArea()
     {
         return width*height;
+    }
+    
+    string Rectangle::toString()
+    {
+        stringstream ss;
+        ss << Shape::toString() << ", Height = " << height << ", Width = " << width << ", Circumference = " << getCircumference() << ", Area = " << getArea();
+        return ss.str();
     }
  
 }
