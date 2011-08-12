@@ -14,11 +14,12 @@ private:
 	std::string line;
 public:
 	Shape(std::string color, std::string line);	//Constructor
-	void setColor(std::string color);		//Used to change the color
+    void setColor(std::string color);		//Used to change the color
 	void setLine(std::string line);			//Used to change the line type
 	std::string getColor();				//Returns the color
 	std::string getLine();				//Returns the line type
-	std::string toString();				//Returns a string that descibes the shape in this format "Color = blue, Line = dotted"
+	virtual std::string toString();				//Returns a string that descibes the shape in this format "Color = blue, Line = dotted"
+    virtual std::string getName();
 }; 
 }
 #endif

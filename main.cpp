@@ -18,6 +18,7 @@
 #include "ex06.h"
 #include "fileiotask.h"
 #include "ex08.h"
+#include "ex09.h"
 
 // Others
 #include <iostream>
@@ -27,7 +28,7 @@ using namespace std;
 int main (int argc, const char * argv[])
 
 {
-    int ex = 8;
+    int ex = 9;
     
     if (ex == 5) 
     {
@@ -54,6 +55,12 @@ int main (int argc, const char * argv[])
     {
         ex08::testCircle();
         ex08::testRectangle();
+        ex08::virtualfunctions();
+    }
+    else if (ex == 9)
+    {
+        ex09::testShuffle();
+        ex09::stringIterator();
     }
 }
 

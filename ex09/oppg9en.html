@@ -1,0 +1,210 @@
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"/>
+
+		<title>TDT4102: Exercise 9</title>
+		
+		<style type="text/css">
+		{font-size: 1.0em;}
+		.code {	font-size: 1.0em;
+			font-family: "Courier New";}
+		dl {margin-top: 0.9em;}
+		dt {margin-top: 0.9em;}
+		h2 {margin-top: 1.5em;}
+		h3 {margin-top: 1.5em;}
+		p {margin-top: 1.1em;}
+		dl {margin-left: 2em;}
+		</style>
+
+	</head>
+	<body>
+
+		<h1>TDT4102, Spring 2011</h1>
+
+		<h2>Exercise 9</h2>
+		<h3>Deadline: 08.04.2011</h3>
+		<hr/>
+		<h3>The objective of this exercise:</h3>
+		<ul>
+			<li>Template functions</li>
+			<li>Standard template library (STL); iterators and containers</li>
+		</ul>
+
+		<h3>General requirements:</h3>
+		<ul>
+			<li>use exact name and specification when given in the exercise</li>
+			<li>it is optional to use an IDE (Visual Studio, Code::Blocks), but it is required that your code is easy to read, compile and run</li>
+		</ul>
+
+		<h3>Recommended reading:</h3>
+		<ul>
+			<li>Chapter 16 &amp; 19, <i>Absolute C++</i> (Walter Savitch)</li>
+			<li>It's Learning notes</li>
+		</ul>
+		For a good reference to STL, see <a href="http://www.cplusplus.com/reference/stl">http://www.cplusplus.com/reference/stl</a>
+
+		<hr/>
+
+		<h2>Part 1: Template functions (20 pt.)</h2>
+		
+		<b>a)</b> Write a template function called <i>shuffle</i> for shuffling the elements of an array.
+		Use the array to be shuffled as the first parameter and the size of the array as the second parameter.
+		Shuffling an array implies reorganizing the elements in a random order.<br/>
+		You should be able to compile and run the following code that uses the template function:
+		<br/><br/>
+		<span class="code">
+		int a[] = {1, 2, 3, 4, 5, 6, 7};<br/>
+		shuffle(a, 7);<br/><br/>
+		
+		double b[] = {1.2, 2.2, 3.2, 4.2};<br/>
+		shuffle(b, 4);<br/><br/>
+		
+		string c[] = {"one", "two", "three", "four"};<br/>
+		shuffle(c, 4);
+		</span>
+		<br/><br/>
+		
+		<b>b)</b> Write a template function called <i>maximum</i> that takes two values
+		of the same type as arguments and returns the highest value.
+		<br/><br/>
+		
+		<b>c)</b> What are the restrictions for using the above function (related to the way you have implemented it)?
+		It will work for all basic data types (int, char, double), but if you call the function with arguments
+		of a user-defined type, such as a Person or Circle class, your program might not compile.<br/>
+		Make sure you understand why it is so, and what you can do to use this function with your own classes.
+		
+		<h2>Part 2: Iterators (20 pt.)</h2>
+		
+		<b>a)</b> Create a vector for strings (vector&lt;string&gt;) and insert a number of strings into the vector
+		using the <i>push_back()</i> function. Print each string in the vector to the screen with a for-loop using
+		<i>iterators</i> (NOT the index operator []).
+		<br/><br/>
+		
+		<b>b)</b> Use the reverse iterator to print the content of the vector in the reverse order.
+		<br/><br/>
+		
+		<b>c)</b> Write a function <i>replace</i> that take a <i>vector&lt;string&gt; reference</i> and two <i>strings</i>
+		as arguments and use iterators and the <i>erase()</i> and <i>insert()</i> functions to replace any element in
+		the vector that matches the first string given, with the second.<br/>
+		Call the function on your vector and print it again.
+		
+		<h2>Part 3: Lists (20 pt.)</h2>
+		
+		<b>a)</b> Create the class <i>Person</i> with member variables for first and last name.
+		Include the constructors, member functions and overloaded operators that you find useful,
+		including a way to print the <i>Person</i> object to the screen.
+		<br/><br/>
+		
+		<b>b)</b> Create a <i>list&lt;Person&gt;</i> variable and write a function for inserting
+		<i>Person</i> objects in sorted order (based on the alphabetical order of names).
+		<br/><br/>
+		<span class="code">void insertOrdered(list&lt;Person&gt; &amp;l, Person p);</span>
+		<br/><br/>
+		
+		Hint: strings can be compared with operators such as &lt; or &gt;.
+		<br/><br/>
+		
+		<b>c)</b> Write a loop in <i>main()</i> that prints all the objects in the list to the screen.
+		
+		<h2>Part 4: Sets and maps (20 pt.)</h2>
+		
+		A header file <i>Phonebook.h</i> is given with declaration and partial implementation of the two classes
+		<i>PhonebookEntry</i> and <i>Phonebook</i>. You shall implement the remaining functions and overload operators.
+		<br/><br/>
+		
+		The <i>PhonebookEntry</i> contains a name (as a string) and phone numbers organized in a map (map&lt;string, string&gt;)
+		where the first string, or the key, is a label describing the phone number ("home", "work", "mobile" and such)
+		and the second string is the phone number.
+		<br/><br/>
+		
+		The <i>Phonebook</i> contains a set of <i>PhonebookEntry</i> (set&lt;PhonebookEntry&gt;)
+		<br/><br/>
+		
+		<b>a)</b> In order to create a set, the &lt; operator must be defined for the elements in the set.<br/>
+		Therefore, overload the &lt; operator for <i>PhonebookEntry</i>.
+		(You should overload the operator so that the name variables of the objects are compared.)
+		<br/><br/>
+		
+		<b>b)</b> Implement the function <i>add</i> for <i>PhonebookEntry</i>. This function should add every
+		number in the argument to the map variable <i>numbers</i> in the object the function was called on.
+		If a label already exists in the map, it should be updated.
+		<br/><br/>
+		
+		<b>c)</b> Implement the function <i>add</i> for <i>Phonebook</i>. This function should check if an
+		entry for the same <i>name</i> as the argument already exists in the phonebook. If it does,
+		the function should add the phone numbers in the argument to the existing entry, using the <i>add</i>
+		function you made in <b>b)</b>. If there is not existing entry with the same name, the new entry
+		should be added to the phonebook.
+		<br/><br/>
+		
+		<b><i>Note on altering elements in a set:</b><br/>
+		There is a disagreement about whether it should be possible to alter elements in a set or not.<br/>
+		Some compilers, such as g++, will not let you do this, arguing that since the keys in a set should be
+		ordered and unique, they should not be allowed to be changed, as this can lead to unsorted sets and duplicates.
+		Other compilators, sutch as the one used by Visual C++, will on the other hand allow altering on set elements,
+		arguing that it is up to the programmer to ensure that the set stays ordered with unique values.
+		<br/><br/>
+		
+		To ensure that your code does not create an invalid set, and to make your code as versatile as possible,
+		you should alter elements in the set in the following way:
+		<ul>
+			<li>Copy the element you wish to alter to a new variable</li>
+			<li>Perform the changes on the new variable</li>
+			<li>Delete the old element from the set</li>
+			<li>Add the new variable to the set</li>
+		</ul></i>
+		<b>d)</b> Overload the &lt;&lt; operator for both <i>PhonebookEntry</i> and <i>Phonebook</i>.
+		<br/><br/>
+		Hint: use the operator you overload for <i>PhonebookEntry</i> in the implementation of the operator for <i>Phonebook</i>.
+		
+		<h2>Part 5: Searching (20 pt.)</h2>
+		
+		Implement the function <i>find</i> for <i>Phonebook</i> for searching the phonebook.<br/>
+		
+		The <i>find</i> function should be quite flexible and support searching by substrings.
+		The first parameter is the name (or substring of a name),
+		the second parameter is the label associated with a phone number (or substring of the label).
+		The third parameter is a <i>Phonebook</i> object for returning the names and numbers found.
+		A boolean return value is used to indicate if a matching entry was found or not.
+		An empty string ("") can be considered to be a substring of every string.
+		(That is, if the string argument representing the name is empty, every name in the phonebook is a match,
+		and if the string argument representing the label is empty, every number of the matching entries is a match.)
+		<br/><br/>
+		
+		Hint: Implement the <i>find</i> function of <i>PhonebookEntry</i> as well,
+		and use this in the <i>find</i> function of <i>Phonebook</i>.<br/>
+		Hint: You need to do substring searching using the <i>find(string&amp;)</i> function in the string class.
+		The <i>find()</i> function searches for substrings and is case-sensitive.
+		(If you want a case-insensitive solution you will have to implement your own substring searching algorithm.)
+		Remember from previous exercises that the <i>find()</i> function returns <i>string::npos</i> if the given argument is not found. 
+		<br/><br/>
+		<pre class = "code">
+<!---       ---><b>Example (assuming that pb is a phonebook with several entries):</b>
+<!---       --->
+<!---       --->Phonebook result;
+<!---       --->if(pb.find("Bob", "mobile", result))
+<!---       --->	cout &lt;&lt; result;
+<!---       --->
+<!---       ---><b>Output:</b>
+<!---       --->Bob the Builder
+<!---       --->	mobile: 22334455
+<!---       --->Bob Hund
+<!---       --->	mobile1: 99999999
+<!---       --->	mobile2: 88888888
+<!---       --->
+<!---       --->
+<!---       --->Phonebook result;
+<!---       --->if(pb.find("Mario", "", result))
+<!---       --->	cout &lt;&lt; result;
+<!---       --->
+<!---       ---><b>Output:</b>
+<!---       --->Super Mario
+<!---       --->	home: 12345678
+<!---       --->	mobile: 98765432
+<!---       --->	work: 33333333
+		
+		
+		</pre>
+
+	</body>
+</html>

@@ -14,6 +14,7 @@ namespace ex08 {
     int fibonacci(int n);
     void testCircle();
     void testRectangle();
+    void virtualfunctions();
 }
 
 

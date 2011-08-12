@@ -49,6 +49,11 @@ namespace ex08 {
         return ss.str();
     }
     
+    string Circle::getName()
+    {
+        return "Circle";
+    }
+    
     
     
 }

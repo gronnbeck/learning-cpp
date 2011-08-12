@@ -32,8 +32,13 @@ namespace ex08 {
 
     string Shape::toString(){
         stringstream ss;
-        ss << "Color = " << color << ", Line = " << line;
+        ss << "Shape = " << getName() << ", Color = " << color << ", Line = " << line;
         return ss.str();
+    }
+    
+    string Shape::getName()
+    {
+        return "base";
     }
 
 }

@@ -9,6 +9,23 @@
 #ifndef Ovinger_C___ex09_h
 #define Ovinger_C___ex09_h
 
+#include <vector>
+
+using namespace std;
+
+namespace ex09
+{
+    void testShuffle();
+    
+    template<class T>
+    void shuffle(T array[], int length);
+    
+    template<class T>
+    void maximum(T x, T y);
+    
+    void stringIterator();
+    void replace(vector<string>* vec, string replace, string with);
+}
 
 
 #endif

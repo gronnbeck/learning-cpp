@@ -21,6 +21,7 @@ namespace ex08 {
         Square(string color, string line, double sideLength) : Rectangle(color, line, sideLength, sideLength) { }
         
         string  toString            ();
+        string  getName             ();
     };
 }
 

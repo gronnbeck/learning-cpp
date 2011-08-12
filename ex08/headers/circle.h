@@ -27,6 +27,7 @@ namespace ex08
         double getCircumference();
         double getArea();
         string toString();
+        string getName();
     };
 }
 

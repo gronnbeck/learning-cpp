@@ -14,12 +14,9 @@ using namespace std;
 
 namespace ex06 {
     
-
-    
     void testMySwap() {
         int a = 1;
         int b = 2;
-        
         
         mySwap(&a, &b);
         
@@ -28,7 +25,6 @@ namespace ex06 {
         
         int *c = new int(3);
         int *d = new int(4);
-        
         
         mySwap(c, d); //Fill in the arguments here (Only alter this line in the code) 
         

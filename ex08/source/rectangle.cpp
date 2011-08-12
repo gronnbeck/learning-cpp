@@ -53,5 +53,10 @@ namespace ex08 {
         ss << Shape::toString() << ", Height = " << height << ", Width = " << width << ", Circumference = " << getCircumference() << ", Area = " << getArea();
         return ss.str();
     }
+    
+    string Rectangle::getName()
+    {
+        return "Rectangle";
+    }
  
 }

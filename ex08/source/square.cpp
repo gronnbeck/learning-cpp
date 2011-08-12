@@ -21,4 +21,9 @@ namespace ex08 {
         ss << Shape::toString() << ", Side Length = " << getWidth() << ", Circumference = " << getCircumference() << ", Area = " << getArea();
         return ss.str();
     }
+    
+    string Square::getName()
+    {
+        return "Square";
+    }
 }

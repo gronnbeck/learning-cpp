@@ -33,6 +33,7 @@ public:
     double  getCircumference    ();
     double  getArea             ();
     string  toString            ();
+    string  getName             ();
     
 };
 
