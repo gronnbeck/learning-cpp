@@ -10,6 +10,8 @@
 #define Ovinger_C___ex09_h
 
 #include <vector>
+#include <list>
+#include "person.h"
 
 using namespace std;
 
@@ -25,6 +27,11 @@ namespace ex09
     
     void stringIterator();
     void replace(vector<string>* vec, string replace, string with);
+    
+    void testPerson();
+    
+    void insertOrdered(list<Person> &list, Person p);
+    void testInsertOrdered();
 }
 
 

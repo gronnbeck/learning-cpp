@@ -61,6 +61,8 @@ int main (int argc, const char * argv[])
     {
         ex09::testShuffle();
         ex09::stringIterator();
+        ex09::testPerson();
+        ex09::testInsertOrdered();
     }
 }
 
