@@ -7,6 +7,7 @@
 //
 
 #include <iostream>
+#include "ex10.h"
 #include "LinkedList.h"
 #include "ListNode.h"
 
@@ -73,6 +74,12 @@ namespace ex10 {
         
         cout << ll;
         
+        // Performance test
+        
+        for (int i = 0; i < 10000000; i++) {
+            ll.insertAtFront("Sup");
+            ll.remove("Sup");
+        }
         
     }
 }
