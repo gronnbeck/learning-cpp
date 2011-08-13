@@ -127,15 +127,45 @@ ListNode* LinkedList::search(const string &val)
     return currentNode;
 }
 
+void LinkedList::remove(const string &val)
+{
+    ListNode* toRemove = search(val);
+    if (toRemove == NULL) return;
+    
+    if (toRemove == last) {
+        delete last;
+    }
+    
+    cout << "DEBUG: " << toRemove->value << endl;
+    cout << "DEBUG: " << toRemove->next->value << endl;
+
+//    toRemove = toRemove->next;    // Pointer change does not work... 
+    
+    
+    
+//    Insert Bruteforce HACK below:
+//    Couldnt get the line above to work... I don't know why... So i used a another approach below... It is certainly a bad hack.. And I do have to read my self upon pointers...
+    
+    ListNode* toBeDeleted = toRemove->next; // deletes this one because its copied over to "toRemove"...
+    
+    *toRemove = *toRemove->next;
+    
+    delete toBeDeleted;
+    
+    if (toRemove->next == NULL) // Needed to move the "last" reference ..
+        last = toRemove;
+    
+}
+
 ostream& operator <<(ostream &output, const LinkedList &ll)
 {
     ListNode* currentNode = ll.head;
     output << "\t*\t" <<currentNode->getValue() << endl;
-    do
+    while (currentNode != ll.last)
     {
         currentNode = currentNode->getNext();
         output << "\t*\t" <<currentNode->getValue() << endl;
-    } while (currentNode != ll.last);
+    } 
     return output;
 }
 

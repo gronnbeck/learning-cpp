@@ -29,6 +29,7 @@ public:
 	bool removeFromBack(string&);
     
     ListNode* search(const string &);
+    void remove(const string &);
     
 	friend ostream &operator <<(ostream &, const LinkedList &);
     

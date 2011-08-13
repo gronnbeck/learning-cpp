@@ -69,6 +69,10 @@ namespace ex10 {
         else
             cout << "The node that returned when searching for 'hello world' was '" << searchForHelloWorld->getValue() << "'" << endl;
         
+        ll.remove("hello world");
+        
+        cout << ll;
+        
         
     }
 }
