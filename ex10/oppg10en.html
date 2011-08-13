@@ -1,0 +1,226 @@
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"/>
+
+		<title>TDT4102: Exercise 10</title>
+		
+		<style type="text/css">
+		{font-size: 1.0em;}
+		.code {	font-size: 1.0em;
+			font-family: "Courier New";}
+		dl {margin-top: 0.9em;}
+		dt {margin-top: 0.9em;}
+		h2 {margin-top: 1.5em;}
+		h3 {margin-top: 1.5em;}
+		p {margin-top: 1.1em;}
+		dl {margin-left: 2em;}
+		</style>
+
+	</head>
+	<body>
+
+		<h1>TDT4102, Spring 2011</h1>
+
+		<h2>Exercise 10</h2>
+		<h3>Deadline: 15.04.2011</h3>
+		<hr/>
+		<h3>The objective of this exercise:</h3>
+		<ul>
+			<li>Learning the linked list data structure.</li>
+			<li>Using exceptions: try-catch blocks, throw exceptions, exception classes</li>
+		</ul>
+
+		<h3>General requirements:</h3>
+		<ul>
+			<li>use exact name and specification when given in the exercise</li>
+			<li>it is optional to use an IDE (Visual Studio, Code::Blocks), but it is required that your code is easy to read, compile and run</li>
+			<li>Write all the necessary code to demonstrate your implementations</li>
+		</ul>
+
+		<h3>Recommended reading:</h3>
+		<ul>
+			<li>Chapter 17 &amp; 18, <i>Absolute C++</i> (Walter Savitch)</li>
+			<li>It's Learning notes</li>
+		</ul>
+		<hr/>
+
+
+		<h2>Part 1: Linked lists (30 pt.)</h2>
+		
+		In this exercise you will implement a linked list. A linked list is a list where,
+		in addition to containing some data, each element points to the next element in the list.
+		Use the suplied file "LList.h", or copy and paste the following code, and implement a linked list where each node holds a string as data.
+		
+<!---  ---><pre>class ListNode{
+<!---       --->private:
+<!---       --->	string value;
+<!---       --->	ListNode *next;
+<!---       --->public:
+<!---       --->	ListNode(const string &amp;);
+<!---       --->	string getValue() const;
+<!---       --->	ListNode *getNext() const;
+<!---       --->
+<!---       --->	friend class LinkedList;
+<!---       --->};
+<!---       --->
+<!---       --->class LinkedList{
+<!---       --->private:
+<!---       --->	ListNode *head;
+<!---       --->	ListNode *last;
+<!---       --->public:
+<!---       --->	LinkedList();
+<!---       --->	~LinkedList();
+<!---       --->	bool isEmpty();
+<!---       --->	void insertAtFront(const string &amp;);
+<!---       --->	void insertAtBack(const string &amp;);
+<!---       --->	bool removeFromFront(string&amp;);
+<!---       --->	bool removeFromBack(string&amp;);
+<!---       --->
+<!---       --->	friend ostream &amp;operator &lt;&lt;(ostream &amp;, const LinkedList &amp;);
+<!---       --->};</pre>
+		Implement the following functions and operator:
+		<ul>
+			<li><i>ListNode::ListNode(const string &amp;value)</i> - initialize the node.</li>
+			<li><i>string ListNode::getValue() const</i> - return the value stored in the node.</li>
+			<li><i>ListNode *ListNode::getNext() const</i> - return a pointer to the next node.</li>
+			<li><i>LinkedList::LinkedList()</i> - constructor which creates a new list with head and last pointing to NULL.</li>
+			<li><i>List::~LinkedList()</i> - destructor which deletes all elements from the list to free the used memory.</li>
+			<li><i>bool LinkedList::isEmpty() const</i> - returns true if the list is empty.</li>
+			<li><i>void LinkedList::insertAtFront(const string &amp;value)</i> - which inserts an item at the beginning of the list.</li>
+			<li><i>void LinkedList::insertAtBack(const string &amp;value)</i> - which inserts an item at the back of the list.</li>
+			<li><i>bool LinkedList::removeFromFront(string &amp;)</i> - which removes an item from the front of the list. The value of the removed element should be stored in the string reference given as argument.</li>
+			<li><i>bool LinkedList::removeFromBack(string &amp;)</i> - which removes an item from the back of the list. The value of the removed element should be stored in the string reference given as argument.</li>
+			<li><i>ostream&amp; operator&lt;&lt;(ostream&amp;, const LinkedList&amp;)</i> - which prints the list in a readable format</li>
+		</ul>
+		
+		The linked list data structure you just created can be used to implement other data structures quite easily. Consider how you could use the LinkedList class to implement a stack or a queue. (You don't have to implement them).
+		
+		
+		<h2>Part 2: Searching the linked list (10 pt.)</h2>
+
+		Add a member function to search the list for a specified string value.
+		The function should return a pointer to the first value that is found; otherwise, NULL should be returned.
+		<br/><br/>
+		<span class="code">ListNode *LinkedList::search(const string &amp;);</span>
+		
+		
+		<h2>Part 3: Deleting nodes from the linked list (10 pt.)</h2>
+		
+		Add a member function to remove and delete all elements from a linked list that matches a given string (the function argument).
+		<br/><br/>
+		<span class="code">void LinkedList::remove(const string &amp;);</span>
+		
+		
+		<h2>Part 4: Creating a template class (10 pt.)</h2>
+		
+		Create a template class based on the implementation you have made so far.
+		The purpose is to enable linked list for all data types, not just strings.
+		<br/><br/>
+		
+		Hint: The template implementation should be made in a new <i>header file</i>.
+		
+		
+		<h2>Part 5: Sorted double linked list (20 pt.)</h2>
+		
+		Create template classes for a sorted double linked list (SortedDoubleLinkedList).
+		Nodes should be inserted in sorted order based on the use of the "less than" operator (&lt;).
+		Double linked means that each node has to have pointers for next and previous node in the list.
+		The list should allow duplicate values. The SortedDoubleLinkedList class should have a function insert(T &amp;)
+		for adding new values and a function remove(T &amp;) for removing values.
+		<br/><br/>
+		
+		Hint: If you wish, you may implement the double linked list for strings first,
+		and convert it into template classes afterwards.
+		
+		
+		<h2>Part 6: Handling exceptions within a program (10 pt.)</h2>
+		
+		A small program is given in the file "Exception.cpp"
+		<br/><br/>
+
+		The program reads two integers from cin, performs an integer division and prints out the quotient 
+		(the result from the integer division). If the input is correct the program works well,
+		but there are different things that can cause errors:
+		<ol>
+			<li>If the user enters a character or a string as dividend, an error message is printed (but the program continues)</li>
+			<li>If the user enters a character or a string as divisor, an error message is printed (but the program continues)</li>
+			<li>If the user enters 0 as the divisor the result is a run-time error because of division by zero</li>
+		</ol>
+
+		Your assignment is to modify the program to take care of these situations by throwing and catching exceptions.
+		If an exception occurs in one of the function calls, the main-function should be able to catch this,
+		print out an error message and terminate.
+		It is sufficient to use a string as the exception data type in all cases.
+		The string exceptions should indicate the error that has caused the exception:
+		use a different string for the three above mentioned cases.
+		Note that exceptions should be thrown in the various functions but caught in main().
+		
+		<h2>Part 7: Custom exception classes (10 pt.)</h2>
+		
+		A triangle is a geometric figure with three sides.
+		A triangle is valid only if the sum of any two of the sides is greater than the third side. 
+		Additionally, each side has to be a positive value larger than zero (side > 0).
+		When you attempt to create a triangle, or change a side of a triangle,
+		you need to ensure that these properties are not violated. If they are violated, exceptions should be thrown.
+		A partial implementation of the class is listed below but you need to create functions for validating the sides
+		and throw exceptions if a user tries to create illegal triangles or change any sides to an illegal value.
+		Use custom exception classes for this purpose.
+<!---  ---><pre>#include &lt;iostream&gt;
+<!---       --->#include &lt;cmath&gt;
+<!---       --->#include &lt;stdexcept&gt;
+<!---       --->
+<!---       --->using namespace std;
+<!---       --->
+<!---       --->class Triangle{
+<!---       --->private:
+<!---       --->	double side1;
+<!---       --->	double side2;
+<!---       --->	double side3;
+<!---       --->public:
+<!---       --->	Triangle() : side1(1), side2(1), side3(1){}
+<!---       --->	Triangle(double, double, double);
+<!---       --->	void setSide1(double);
+<!---       --->	void setSide2(double);
+<!---       --->	void setSide3(double);
+<!---       --->	double getSide1(){return side1;}
+<!---       --->	double getSide2(){return side2;}
+<!---       --->	double getSide3(){return side3;}
+<!---       --->	double getPerimeter(){return side1 + side2 + side3;}
+<!---       --->};</pre>
+		
+		<b>a)</b> Add member functions for validating the sides of a triangle
+		(to test if sides are > 0 and test if any combination of two sides is greater than the third side).<br/>
+		(These functions are only for validating values and should not throw exceptions directly.)
+		<br/><br/>
+		
+		<b>b)</b> Create a custom exception class called <i>TriangleException</i> for exceptions that should be thrown
+		in case the sides do not make a triangle (if the sum of any of the two sides is not greater than the third side).
+		This exception class has to inherit the <i>logic_error</i> exception class in &lt;stdexcept&gt;
+		and should include member variables for all of the side values (and get-functions).
+		The inherited function what() should return a text that indicates that the triangle properties are violated
+		(use the constructor of the parent class to set the text that what() returns).
+		<br/><br/>
+
+		<b>c)</b> Create a custom exception class called <i>NonPositiveSideException</i>
+		for exceptions that should be thrown in case a side is a non-positive value.
+		This exceptions class  has to inherited the <i>invalid_argument</i> exception class in &lt;stdexcept&gt;
+		and should include a member variable for the erroneous value (and a get-function).
+		The message returned from the what() function can e.g. be "Invalid side"
+		(use the constructor of the parent class to set the text that what() returns.)
+		<br/><br/>
+		
+		<b>d)</b> Implement the set-functions in the Triangle class and the constructor Triangle(double, double, double).
+		If the properties of a triangle are violated, these functions should throw an exception for the violation.
+		It is best to test for non-positive values first.
+		<br/><br/>
+		
+		<b>e)</b> Make some triangle instances with legal and illegal values in the main-method and try out the different exceptions.
+		Change the sides by the use of the set-functions to make sure that exceptions are thrown by these functions as well.
+		Use different catch-blocks for different types of exceptions and make sure that the exception handling is working as intended.
+		Print out the information that is available about the exception.
+		Make sure that exceptions are thrown both by the constructor and  by the set-functions.
+		
+
+
+	</body>
+</html>

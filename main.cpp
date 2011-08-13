@@ -19,6 +19,7 @@
 #include "fileiotask.h"
 #include "ex08.h"
 #include "ex09.h"
+#include "ex10.h"
 
 // Others
 #include <iostream>
@@ -28,7 +29,7 @@ using namespace std;
 int main (int argc, const char * argv[])
 
 {
-    int ex = 9;
+    int ex = 10;
     
     if (ex == 5) 
     {
@@ -63,6 +64,11 @@ int main (int argc, const char * argv[])
         ex09::stringIterator();
         ex09::testPerson();
         ex09::testInsertOrdered();
+    }
+    else if (ex == 10)
+    {
+        ex10::testLinkedList();
+        
     }
 }
 
